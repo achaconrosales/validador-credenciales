@@ -32,7 +32,11 @@ pipeline {
                 sh "make all VERSION=${VERSION}"
             }
         }
-
+        stage("Analizar") {
+            steps {
+                sh "make analyze"
+            }
+        }
         stage("Probar") {
             steps {
                 catchError(buildResult: "UNSTABLE", stageResult: "UNSTABLE") {
